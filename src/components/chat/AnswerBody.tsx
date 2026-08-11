@@ -93,7 +93,7 @@ export function AnswerBody({ content }: { content: string }) {
         flush();
         list = { ordered: false, items: [] };
       }
-      list.items.push(bullet[1]);
+      list.items.push(bullet[1] ?? "");
       return;
     }
     if (ordered) {
@@ -101,7 +101,7 @@ export function AnswerBody({ content }: { content: string }) {
         flush();
         list = { ordered: true, items: [] };
       }
-      list.items.push(ordered[1]);
+      list.items.push(ordered[1] ?? "");
       return;
     }
     flush();
