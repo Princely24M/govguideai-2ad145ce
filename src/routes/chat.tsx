@@ -19,6 +19,8 @@ import { Disclaimer } from "@/components/Disclaimer";
 import { SiteHeader } from "@/components/SiteHeader";
 import { supabase } from "@/integrations/supabase/client";
 import { askGovGuide } from "@/lib/govguide.functions";
+import { stashGuestConversation } from "@/lib/guest-conversation";
+import { useAuth } from "@/hooks/use-auth";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/chat")({
@@ -75,6 +77,7 @@ function newId() {
 
 function ChatPage() {
   const ask = useServerFn(askGovGuide);
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
@@ -109,6 +112,16 @@ function ChatPage() {
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages, pending]);
+
+  // Keep a guest transcript ready so signing in can save it to an account.
+  useEffect(() => {
+    if (user || messages.length === 0) return;
+    stashGuestConversation(
+      messages
+        .filter((m) => !m.isError)
+        .map(({ role, content }) => ({ role, content })),
+    );
+  }, [messages, user]);
 
   const send = useCallback(
     async (text: string) => {
@@ -188,6 +201,15 @@ function ChatPage() {
             </p>
           </div>
           {!isEmpty ? (
+            <div className="flex items-center gap-2">
+            {!user ? (
+              <Link
+                to="/auth"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground transition-all hover:brightness-110"
+              >
+                Save this conversation
+              </Link>
+            ) : null}
             <button
               type="button"
               onClick={clearConversation}
@@ -196,6 +218,7 @@ function ChatPage() {
               <RotateCcw className="size-3.5" aria-hidden="true" />
               Clear conversation
             </button>
+            </div>
           ) : null}
         </div>
 

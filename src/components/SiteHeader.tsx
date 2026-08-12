@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, MessageSquareText, X } from "lucide-react";
+import { LayoutDashboard, Menu, MessageSquareText, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { useAuth } from "@/hooks/use-auth";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -13,6 +14,7 @@ const NAV = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, loading } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -56,6 +58,24 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {!loading ? (
+            user ? (
+              <Link
+                to="/dashboard"
+                className="hidden items-center gap-2 rounded-full border border-border bg-surface/70 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary sm:inline-flex"
+              >
+                <LayoutDashboard className="size-4" aria-hidden="true" />
+                My conversations
+              </Link>
+            ) : (
+              <Link
+                to="/auth"
+                className="hidden items-center rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+              >
+                Sign in
+              </Link>
+            )
+          ) : null}
           <Link
             to="/chat"
             className="hidden items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-soft transition-all duration-300 hover:shadow-glow hover:brightness-110 sm:inline-flex"
@@ -77,7 +97,13 @@ export function SiteHeader() {
 
       {open ? (
         <div className="glass mx-4 mb-3 rounded-2xl p-2 md:hidden">
-          {[...NAV, { to: "/chat", label: "Ask GovGuide" } as const].map((item) => (
+          {[
+            ...NAV,
+            { to: "/chat", label: "Ask GovGuide" } as const,
+            user
+              ? ({ to: "/dashboard", label: "My conversations" } as const)
+              : ({ to: "/auth", label: "Sign in" } as const),
+          ].map((item) => (
             <Link
               key={item.to}
               to={item.to}

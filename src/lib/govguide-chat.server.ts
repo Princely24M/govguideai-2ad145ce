@@ -1,4 +1,9 @@
-import { AssistantError, completeChat, type GatewayMessage } from "./govguide-gateway.server";
+import {
+  AssistantError,
+  completeChat,
+  type GatewayMessage,
+  type Usage,
+} from "./govguide-gateway.server";
 import { buildSystemPrompt, PROMPT_VERSION } from "./govguide-prompt.server";
 import { retrieveContext } from "./govguide-retrieval.server";
 
@@ -7,6 +12,7 @@ export type ChatTurn = { role: "user" | "assistant"; content: string };
 export type AssistantAnswer = {
   answer: string;
   promptVersion: string;
+  usage: Usage;
   sources: {
     slug: string;
     serviceName: string;
@@ -34,11 +40,12 @@ export async function askAssistant(turns: ChatTurn[]): Promise<AssistantAnswer> 
     ...recent.map((turn) => ({ role: turn.role, content: turn.content }) as GatewayMessage),
   ];
 
-  const answer = await completeChat(messages);
+  const { answer, usage } = await completeChat(messages);
 
   return {
     answer,
     promptVersion: PROMPT_VERSION,
+    usage,
     sources: services.map((service) => ({
       slug: service.slug,
       serviceName: service.service_name,
