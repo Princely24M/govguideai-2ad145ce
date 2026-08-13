@@ -6,7 +6,6 @@ import {
   Copy,
   ExternalLink,
   RotateCcw,
-  Sparkles,
   ThumbsDown,
   ThumbsUp,
   TriangleAlert,
@@ -15,6 +14,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { AnswerBody } from "@/components/chat/AnswerBody";
+import { BrandMark } from "@/components/BrandLogo";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SiteHeader } from "@/components/SiteHeader";
 import { supabase } from "@/integrations/supabase/client";
