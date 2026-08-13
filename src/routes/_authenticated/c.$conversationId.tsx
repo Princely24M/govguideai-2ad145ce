@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { WorkspaceShell } from "@/components/app/WorkspaceShell";
 import { AnswerBody } from "@/components/chat/AnswerBody";
+import { BrandMark } from "@/components/BrandLogo";
 import { Disclaimer } from "@/components/Disclaimer";
 import {
   askInConversation,
