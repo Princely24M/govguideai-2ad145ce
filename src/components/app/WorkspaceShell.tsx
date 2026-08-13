@@ -16,6 +16,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { toast } from "sonner";
 
 import { useAuth } from "@/hooks/use-auth";
+import { BrandLogo, BrandMark } from "@/components/BrandLogo";
 import { supabase } from "@/integrations/supabase/client";
 import {
   createConversation,
@@ -68,7 +69,8 @@ export function WorkspaceShell({
           >
             <Menu className="size-5" aria-hidden="true" />
           </button>
-          <span className="font-display text-sm font-semibold tracking-tight">GovGuide</span>
+          <BrandMark size="xs" />
+          <span className="font-display text-sm font-semibold tracking-tight">GovGuide AI</span>
         </div>
         {children}
       </div>
@@ -133,11 +135,8 @@ function SidebarBody({
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between gap-2 px-4 pt-4">
-        <Link to="/" onClick={onNavigate} className="flex items-center gap-2.5">
-          <span className="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground">
-            <span className="font-display text-sm font-semibold">GG</span>
-          </span>
-          <span className="font-display text-sm font-semibold tracking-tight">GovGuide</span>
+        <Link to="/" onClick={onNavigate} aria-label="GovGuide AI — home" className="flex items-center">
+          <BrandLogo size="sm" />
         </Link>
         {onNavigate ? (
           <button

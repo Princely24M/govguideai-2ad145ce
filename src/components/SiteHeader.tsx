@@ -3,6 +3,7 @@ import { LayoutDashboard, Menu, MessageSquareText, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { useAuth } from "@/hooks/use-auth";
+import { BrandLogo } from "@/components/BrandLogo";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -32,16 +33,17 @@ export function SiteHeader() {
       style={{ transitionTimingFunction: "var(--ease-soft)" }}
     >
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8">
-        <Link to="/" className="group flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground shadow-soft transition-transform duration-300 group-hover:scale-105">
-            <span className="font-display text-sm font-semibold tracking-tight">GG</span>
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-[0.95rem] font-semibold tracking-tight">GovGuide</span>
-            <span className="text-[0.62rem] font-medium uppercase tracking-[0.16em] text-muted-foreground">
-              AI Assistant
-            </span>
-          </span>
+        <Link
+          to="/"
+          aria-label="GovGuide AI — home"
+          className="group flex items-center"
+          onClick={() => setOpen(false)}
+        >
+          <BrandLogo
+            size="sm"
+            subtitle="AI Assistant"
+            className="transition-transform duration-300 group-hover:scale-[1.03]"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
