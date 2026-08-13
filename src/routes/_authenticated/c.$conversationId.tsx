@@ -93,8 +93,9 @@ function ConversationPage() {
     <WorkspaceShell activeConversationId={conversationId}>
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 pb-10 pt-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h1 className="font-display text-xl font-semibold tracking-tight">
-            {conversation.data?.conversation?.title ?? "Conversation"}
+          <h1 className="flex min-w-0 items-center gap-2.5 font-display text-xl font-semibold tracking-tight">
+            <BrandMark size="xs" />
+            <span className="truncate">{conversation.data?.conversation?.title ?? "Conversation"}</span>
           </h1>
           <div className="flex items-center gap-2">
             <button
