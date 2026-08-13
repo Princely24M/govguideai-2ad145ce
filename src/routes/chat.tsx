@@ -6,7 +6,6 @@ import {
   Copy,
   ExternalLink,
   RotateCcw,
-  Sparkles,
   ThumbsDown,
   ThumbsUp,
   TriangleAlert,
@@ -15,6 +14,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { AnswerBody } from "@/components/chat/AnswerBody";
+import { BrandMark } from "@/components/BrandLogo";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SiteHeader } from "@/components/SiteHeader";
 import { supabase } from "@/integrations/supabase/client";
@@ -193,8 +193,9 @@ function ChatPage() {
       <main className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col px-4 pb-40 pt-6 sm:px-6 sm:pb-44">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
-              GovGuide Assistant
+            <h1 className="flex items-center gap-2.5 font-display text-xl font-semibold tracking-tight sm:text-2xl">
+              <BrandMark size="sm" />
+              GovGuide AI Assistant
             </h1>
             <p className="mt-1 text-sm text-muted-foreground">
               Verified information on 8 South African services, with the source behind every answer.
@@ -294,8 +295,8 @@ function ChatPage() {
 function EmptyState({ onPick }: { onPick: (text: string) => void }) {
   return (
     <div className="mt-10 text-center">
-      <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary">
-        <Sparkles className="size-6" aria-hidden="true" />
+      <span className="mx-auto grid size-16 place-items-center rounded-2xl bg-primary/10 p-2.5">
+        <BrandMark size="lg" className="h-10" />
       </span>
       <h2 className="mt-5 font-display text-2xl font-semibold tracking-tight">
         What do you need help with?

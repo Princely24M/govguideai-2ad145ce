@@ -10,10 +10,10 @@ import {
   MessagesSquare,
   ScrollText,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-service-hall.jpg";
+import { BrandLogo } from "@/components/BrandLogo";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Disclaimer } from "@/components/Disclaimer";
 import { Reveal } from "@/components/Reveal";
@@ -106,10 +106,7 @@ function Landing() {
         <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Reveal>
-              <span className="glass-secondary inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold text-primary">
-                <Sparkles className="size-3.5" aria-hidden="true" />
-                AI public-service assistant · South Africa
-              </span>
+              <BrandLogo size="lg" subtitle="AI public-service assistant · South Africa" />
             </Reveal>
             <Reveal delay={80}>
               <h1 className="text-hero mt-6">

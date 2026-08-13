@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, Loader2, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { useAuth } from "@/hooks/use-auth";
+import { BrandMark } from "@/components/BrandLogo";
 import { supabase } from "@/integrations/supabase/client";
 import { importGuestConversation } from "@/lib/account.functions";
 import { clearGuestConversation, readGuestConversation } from "@/lib/guest-conversation";
@@ -159,8 +160,8 @@ function AuthPage() {
         </Link>
 
         <div className="glass rounded-3xl p-6 sm:p-8">
-          <span className="grid size-11 place-items-center rounded-2xl bg-primary/10 text-primary">
-            <ShieldCheck className="size-5" aria-hidden="true" />
+          <span className="grid size-14 place-items-center rounded-2xl bg-primary/10 p-2">
+            <BrandMark size="md" />
           </span>
           <h1 className="mt-4 font-display text-2xl font-semibold tracking-tight">
             {mode === "signup"
