@@ -294,8 +294,8 @@ function ChatPage() {
 function EmptyState({ onPick }: { onPick: (text: string) => void }) {
   return (
     <div className="mt-10 text-center">
-      <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary">
-        <Sparkles className="size-6" aria-hidden="true" />
+      <span className="mx-auto grid size-16 place-items-center rounded-2xl bg-primary/10 p-2.5">
+        <BrandMark size="lg" className="h-10" />
       </span>
       <h2 className="mt-5 font-display text-2xl font-semibold tracking-tight">
         What do you need help with?

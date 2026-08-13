@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
+import { BrandLogo } from "@/components/BrandLogo";
+
 const SOURCES = [
   { label: "South African Government", url: "https://www.gov.za/services" },
   { label: "Department of Home Affairs", url: "https://www.dha.gov.za/" },
@@ -13,7 +15,9 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-border/70 bg-surface-muted/60">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-display text-lg font-semibold tracking-tight">GovGuide</p>
+          <Link to="/" aria-label="GovGuide AI — home" className="inline-flex items-center">
+            <BrandLogo size="md" />
+          </Link>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
             An AI-powered public-service information assistant that explains South African government
             procedures in plain language, with a link to the official source behind every answer.
