@@ -17,7 +17,13 @@ const WORD_SIZE: Record<Size, string> = {
   lg: "text-xl",
 };
 
-export function BrandMark({ size = "md", className }: { size?: Size; className?: string }) {
+export function BrandMark({
+  size = "md",
+  className,
+}: {
+  size?: Size | undefined;
+  className?: string | undefined;
+}) {
   return (
     <img
       src={mark.url}
@@ -44,10 +50,10 @@ export function BrandLogo({
   className,
   subtitle,
 }: {
-  variant?: "full" | "mark";
-  size?: Size;
-  className?: string;
-  subtitle?: string;
+  variant?: "full" | "mark" | undefined;
+  size?: Size | undefined;
+  className?: string | undefined;
+  subtitle?: string | undefined;
 }) {
   if (variant === "mark") return <BrandMark size={size} className={className} />;
 
