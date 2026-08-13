@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-service-hall.jpg";
+import { BrandLogo } from "@/components/BrandLogo";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Disclaimer } from "@/components/Disclaimer";
 import { Reveal } from "@/components/Reveal";

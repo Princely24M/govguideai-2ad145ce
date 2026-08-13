@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { useAuth } from "@/hooks/use-auth";
+import { BrandMark } from "@/components/BrandLogo";
 import { supabase } from "@/integrations/supabase/client";
 import { importGuestConversation } from "@/lib/account.functions";
 import { clearGuestConversation, readGuestConversation } from "@/lib/guest-conversation";
