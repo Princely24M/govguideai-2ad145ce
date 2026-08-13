@@ -10,7 +10,6 @@ import {
   MessagesSquare,
   ScrollText,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-service-hall.jpg";
