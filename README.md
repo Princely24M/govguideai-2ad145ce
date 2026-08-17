@@ -205,10 +205,15 @@ Roles are leads, not exclusive ownership — every feature was a collaboration.
 
 | Member | Role | Responsibilities |
 | --- | --- | --- |
-| **Princely** | Product / AI / UX Lead | Product direction, AI behaviour, prompt engineering, UX architecture, documentation, presentation |
-| **Thenjiwe** | Frontend / UI Developer | React, responsive UI, landing page, chat interface, design system |
-| **Sinawo** | Backend / Database Developer | Supabase, authentication, database, RLS, backend logic, data security |
-| **Chichi** | AI Integration / QA Developer | AI API integration, response handling, usage tracking, testing, error handling, QA |
+| **Thenjiwe** | Product & AI/UX Lead | Product direction, AI behaviour, prompt engineering, UX architecture, documentation |
+| **Chichi** | Frontend & UI Developer | React, responsive UI, landing page, chat interface, design system |
+| **Princely** | Backend & Data Developer | Supabase, authentication, database, RLS, backend logic, data security |
+| **Sinawo** | AI Integration & QA Lead | AI API integration, response handling, usage tracking, testing, error handling, QA |
+
+## Project purpose
+
+Built as an AI Bootcamp group project, applying AI, prompt engineering, conversational AI and
+full-stack development to a real-world public-service problem.
 
 ## Documentation
 
