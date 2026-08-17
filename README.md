@@ -155,6 +155,20 @@ and responsive breakpoints: [docs/TESTING.md](docs/TESTING.md). Automated tests 
 
 ---
 
+## Project structure
+
+```text
+src/routes/            File-based routes (landing, /chat, /services, /auth, /_authenticated/*)
+src/routes/api/        Server routes for external HTTP callers
+src/components/        UI components (branding, header/footer, chat, workspace shell)
+src/lib/               Server functions (*.functions.ts) and server-only logic (*.server.ts)
+src/integrations/      Generated Supabase clients and auth middleware
+src/assets/            Images and brand assets
+src/styles.css         Tailwind v4 theme + OKLCH design tokens
+supabase/migrations/   SQL schema, RLS policies and seed data
+docs/                  Architecture, AI logic, database, security and testing docs
+```
+
 ## Installation
 
 ```sh
