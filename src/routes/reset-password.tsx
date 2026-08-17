@@ -53,7 +53,9 @@ function ResetPasswordPage() {
         <span className="grid size-14 place-items-center rounded-2xl bg-primary/10 p-2">
           <BrandMark size="md" />
         </span>
-        <h1 className="mt-4 font-display text-2xl font-semibold tracking-tight">Set a new password</h1>
+        <h1 className="mt-4 font-display text-2xl font-semibold tracking-tight">
+          Set a new password
+        </h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Choose a password you haven't used on GovGuide before.
         </p>
@@ -87,7 +89,10 @@ function ResetPasswordPage() {
           </div>
 
           {error ? (
-            <p role="alert" className="rounded-2xl bg-destructive/10 px-3.5 py-2.5 text-sm text-destructive">
+            <p
+              role="alert"
+              className="rounded-2xl bg-destructive/10 px-3.5 py-2.5 text-sm text-destructive"
+            >
               {error}
             </p>
           ) : null}

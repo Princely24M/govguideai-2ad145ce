@@ -9,7 +9,10 @@ export const Route = createFileRoute("/_authenticated/usage")({
   head: () => ({
     meta: [
       { title: "Your GovGuide usage" },
-      { name: "description", content: "How many GovGuide answers you have received and the tokens used." },
+      {
+        name: "description",
+        content: "How many GovGuide answers you have received and the tokens used.",
+      },
       { property: "og:title", content: "Your GovGuide usage" },
       { property: "og:description", content: "Answers received and tokens used on GovGuide." },
       { name: "robots", content: "noindex" },
@@ -34,7 +37,9 @@ function UsagePage() {
     <WorkspaceShell>
       <main className="mx-auto w-full max-w-3xl px-5 py-10">
         <h1 className="font-display text-2xl font-semibold tracking-tight">Usage</h1>
-        <p className="mt-2 text-sm text-muted-foreground">A running total across your saved conversations.</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          A running total across your saved conversations.
+        </p>
 
         <div className="mt-7 grid gap-3 sm:grid-cols-2">
           {cards.map((card) => (

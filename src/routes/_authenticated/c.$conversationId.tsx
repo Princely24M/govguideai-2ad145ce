@@ -21,7 +21,10 @@ export const Route = createFileRoute("/_authenticated/c/$conversationId")({
   head: () => ({
     meta: [
       { title: "Conversation — GovGuide" },
-      { name: "description", content: "A saved GovGuide conversation about South African government services." },
+      {
+        name: "description",
+        content: "A saved GovGuide conversation about South African government services.",
+      },
       { property: "og:title", content: "Conversation — GovGuide" },
       { property: "og:description", content: "A saved GovGuide conversation." },
       { name: "robots", content: "noindex" },
@@ -96,7 +99,9 @@ function ConversationPage() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h1 className="flex min-w-0 items-center gap-2.5 font-display text-xl font-semibold tracking-tight">
             <BrandMark size="xs" />
-            <span className="truncate">{conversation.data?.conversation?.title ?? "Conversation"}</span>
+            <span className="truncate">
+              {conversation.data?.conversation?.title ?? "Conversation"}
+            </span>
           </h1>
           <div className="flex items-center gap-2">
             <button

@@ -1,6 +1,7 @@
 # System Architecture
 
 ## Runtime topology
+
 ```text
 ┌──────────────────────────────────────────────┐
 │ Browser — React 19 + TanStack Router         │
@@ -22,6 +23,7 @@
 ```
 
 ## Layers
+
 1. **Presentation** — file-based routes in `src/routes`, shared shell in `__root.tsx`, gated subtree
    `src/routes/_authenticated/` whose `route.tsx` redirects unauthenticated users to `/auth`.
 2. **Client state** — `AuthProvider` (Supabase `onAuthStateChange`), `ThemeProvider`
@@ -33,12 +35,14 @@
 5. **AI** — a single server-side gateway module. The AI key never reaches the browser.
 
 ## Request flow: guest question
+
 ```text
 /chat → askGovGuide (server fn) → retrieval over verified services
       → build system prompt → AI Gateway → { answer, sources } → UI
 ```
 
 ## Request flow: authenticated question
+
 ```text
 /c/$id → askInConversation → verify session → load prior messages (RLS)
        → retrieval + prompt → AI Gateway → persist user+assistant messages
@@ -46,6 +50,7 @@
 ```
 
 ## Boundary rules
+
 - `*.server.ts` modules are server-only and never imported by components directly.
 - Secrets are read inside handlers via `process.env`; browser config uses `import.meta.env.VITE_*`.
 - SSR-unsafe browser APIs are read in effects, not during render.

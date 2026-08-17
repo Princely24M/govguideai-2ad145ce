@@ -35,40 +35,49 @@ grants, and anyone helping a family member navigate a government process.
 ## Features (IMPLEMENTED)
 
 ### Landing page
+
 Branded hero with the official GovGuide logo, the public-service problem, how the assistant works,
 AI capabilities, trust and responsible-AI messaging, accessibility notes, featured services and a
 call to action into **Ask GovGuide**.
 
 ### Guest chat — `/chat`
+
 No account required. Suggested starter questions, conversational context, thinking state, error
 handling, copy answer, thumbs up/down feedback, and a "Save this conversation" path that carries the
 transcript into a new account on sign-up.
 
 ### Service explorer — `/services`, `/services/$slug`
+
 Browsable, searchable directory of the verified services with category filters. Each detail page
 lists documents, steps, fees, processing time, the responsible authority, the official URL and the
 last-verified date.
 
 ### Authentication — `/auth`, `/reset-password`
+
 Email + password sign-up, sign-in, sign-out, password reset, and persistent sessions. The
 `/_authenticated/*` route subtree is gated and redirects unauthenticated visitors to `/auth`.
 
 ### Conversation management — `/dashboard`, `/c/$conversationId`, `/archived`
+
 Create conversations, send messages, receive AI answers with sources, auto-generated titles,
 sidebar history, search across conversations, rename, archive, restore and delete.
 
 ### Profile and settings — `/settings`
+
 Edit display name; appearance switch for Light / Dark / System (System follows the OS/browser
 preference); danger zone to delete all conversations behind an explicit confirmation; sign out.
 
 ### Usage — `/usage`
+
 AI response count plus input, output and total tokens, aggregated from the token metadata the AI
 provider returns on each response. No values are estimated or fabricated.
 
 ### About — `/about`
+
 Accuracy rules, source-tracing methodology and accessibility commitments.
 
 ## Planned / future
+
 See [docs/FUTURE_ROADMAP.md](docs/FUTURE_ROADMAP.md) — multilingual answers (isiZulu, isiXhosa,
 Afrikaans, Sesotho), voice input, document checklists as downloadable PDFs, office locator, semantic
 (vector) retrieval, and an admin console for maintaining verified content.
@@ -109,18 +118,18 @@ tablet and mobile. See [docs/UI_UX_DESIGN.md](docs/UI_UX_DESIGN.md).
 
 ## Technology stack
 
-| Layer | Technology |
-| --- | --- |
-| Framework | TanStack Start v1 (React 19, SSR, file-based routing) |
-| Build | Vite |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 + OKLCH design tokens |
-| UI primitives | Radix UI / shadcn-style components, lucide-react, sonner |
-| Data fetching | TanStack Query + route loaders |
-| Backend logic | TanStack `createServerFn` server functions |
-| Database & auth | Supabase (PostgreSQL, Auth, Row Level Security) |
-| AI | Lovable AI Gateway (Gemini-class model) |
-| Hosting | Lovable (edge/worker runtime) |
+| Layer           | Technology                                               |
+| --------------- | -------------------------------------------------------- |
+| Framework       | TanStack Start v1 (React 19, SSR, file-based routing)    |
+| Build           | Vite                                                     |
+| Language        | TypeScript                                               |
+| Styling         | Tailwind CSS v4 + OKLCH design tokens                    |
+| UI primitives   | Radix UI / shadcn-style components, lucide-react, sonner |
+| Data fetching   | TanStack Query + route loaders                           |
+| Backend logic   | TanStack `createServerFn` server functions               |
+| Database & auth | Supabase (PostgreSQL, Auth, Row Level Security)          |
+| AI              | Lovable AI Gateway (Gemini-class model)                  |
+| Hosting         | Lovable (edge/worker runtime)                            |
 
 ## Architecture
 
@@ -155,6 +164,20 @@ and responsive breakpoints: [docs/TESTING.md](docs/TESTING.md). Automated tests 
 
 ---
 
+## Project structure
+
+```text
+src/routes/            File-based routes (landing, /chat, /services, /auth, /_authenticated/*)
+src/routes/api/        Server routes for external HTTP callers
+src/components/        UI components (branding, header/footer, chat, workspace shell)
+src/lib/               Server functions (*.functions.ts) and server-only logic (*.server.ts)
+src/integrations/      Generated Supabase clients and auth middleware
+src/assets/            Images and brand assets
+src/styles.css         Tailwind v4 theme + OKLCH design tokens
+supabase/migrations/   SQL schema, RLS policies and seed data
+docs/                  Architecture, AI logic, database, security and testing docs
+```
+
 ## Installation
 
 ```sh
@@ -168,21 +191,17 @@ Scripts defined in `package.json`: `dev`, `build`, `build:dev`, `preview`, `lint
 
 ## Environment variables
 
-Client-safe (publishable) values, required to run locally:
+Copy [`.env.example`](.env.example) to `.env` and fill in your own values. `.env` is git-ignored and
+must never be committed — real credentials stay local or in the hosting environment.
 
 ```sh
-VITE_SUPABASE_URL=https://<project>.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
-VITE_SUPABASE_PROJECT_ID=<project-ref>
-SUPABASE_URL=https://<project>.supabase.co
-SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+cp .env.example .env
 ```
 
-Server-side secrets (never committed, set in the hosting environment):
-
-```sh
-LOVABLE_API_KEY=        # AI Gateway access
-```
+`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID`,
+`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` are client-safe publishable values (safe only because
+Row Level Security is enforced). `LOVABLE_API_KEY` is a server-side secret for the AI Gateway and is
+set in the hosting environment only.
 
 ## Deployment
 
@@ -203,12 +222,17 @@ Place captures in [`screenshots/`](screenshots) (`landing-page.png`, `guest-chat
 
 Roles are leads, not exclusive ownership — every feature was a collaboration.
 
-| Member | Role | Responsibilities |
-| --- | --- | --- |
-| **Princely** | Product / AI / UX Lead | Product direction, AI behaviour, prompt engineering, UX architecture, documentation, presentation |
-| **Thenjiwe** | Frontend / UI Developer | React, responsive UI, landing page, chat interface, design system |
-| **Sinawo** | Backend / Database Developer | Supabase, authentication, database, RLS, backend logic, data security |
-| **Chichi** | AI Integration / QA Developer | AI API integration, response handling, usage tracking, testing, error handling, QA |
+| Member       | Role                     | Responsibilities                                                                    |
+| ------------ | ------------------------ | ----------------------------------------------------------------------------------- |
+| **Thenjiwe** | Product & AI/UX Lead     | Product direction, AI behaviour, prompt engineering, UX architecture, documentation |
+| **Chichi**   | Frontend & UI Developer  | React, responsive UI, landing page, chat interface, design system                   |
+| **Princely** | Backend & Data Developer | Supabase, authentication, database, RLS, backend logic, data security               |
+| **Sinawo**   | AI Integration & QA Lead | AI API integration, response handling, usage tracking, testing, error handling, QA  |
+
+## Project purpose
+
+Built as an AI Bootcamp group project, applying AI, prompt engineering, conversational AI and
+full-stack development to a real-world public-service problem.
 
 ## Documentation
 

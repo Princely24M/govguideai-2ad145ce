@@ -2,7 +2,13 @@ import { ShieldAlert } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-export function Disclaimer({ className, compact = false }: { className?: string; compact?: boolean }) {
+export function Disclaimer({
+  className,
+  compact = false,
+}: {
+  className?: string;
+  compact?: boolean;
+}) {
   return (
     <p
       className={cn(
@@ -11,10 +17,14 @@ export function Disclaimer({ className, compact = false }: { className?: string;
         className,
       )}
     >
-      <ShieldAlert className="mt-0.5 size-4 shrink-0 text-accent-foreground/70" aria-hidden="true" />
+      <ShieldAlert
+        className="mt-0.5 size-4 shrink-0 text-accent-foreground/70"
+        aria-hidden="true"
+      />
       <span>
-        GovGuide is an AI-powered information assistant and is <strong>not</strong> an official government
-        service. Always verify important information with the relevant government authority.
+        GovGuide is an AI-powered information assistant and is <strong>not</strong> an official
+        government service. Always verify important information with the relevant government
+        authority.
       </span>
     </p>
   );

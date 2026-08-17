@@ -40,7 +40,10 @@ function ArchivedPage() {
 
         <ul className="mt-7 space-y-2">
           {(archived.data ?? []).map((conversation) => (
-            <li key={conversation.id} className="glass flex items-center gap-3 rounded-2xl px-4 py-3.5">
+            <li
+              key={conversation.id}
+              className="glass flex items-center gap-3 rounded-2xl px-4 py-3.5"
+            >
               <Link
                 to="/c/$conversationId"
                 params={{ conversationId: conversation.id }}

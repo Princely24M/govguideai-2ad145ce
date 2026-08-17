@@ -59,8 +59,8 @@ function About() {
           <p className="text-eyebrow text-muted-foreground">About</p>
           <h1 className="text-section mt-4">Accuracy before eloquence.</h1>
           <p className="text-lede mt-5">
-            GovGuide is an independent guidance tool. It is not a government service and cannot submit
-            applications on your behalf.
+            GovGuide is an independent guidance tool. It is not a government service and cannot
+            submit applications on your behalf.
           </p>
         </Reveal>
 
@@ -68,8 +68,12 @@ function About() {
           {SECTIONS.map((section, index) => (
             <Reveal key={section.title} delay={index * 70}>
               <section className="rounded-3xl border border-border/70 bg-surface p-6 shadow-soft">
-                <h2 className="font-display text-lg font-semibold tracking-tight">{section.title}</h2>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{section.body}</p>
+                <h2 className="font-display text-lg font-semibold tracking-tight">
+                  {section.title}
+                </h2>
+                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                  {section.body}
+                </p>
               </section>
             </Reveal>
           ))}

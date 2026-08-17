@@ -60,7 +60,10 @@ export function AnswerBody({ content }: { content: string }) {
         <ul key={key} className="my-3 space-y-1.5">
           {list.items.map((item, index) => (
             <li key={`${key}-${index}`} className="flex gap-3">
-              <span className="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+              <span
+                className="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent"
+                aria-hidden="true"
+              />
               <span className="flex-1">{inline(item, `${key}-${index}`)}</span>
             </li>
           ))}

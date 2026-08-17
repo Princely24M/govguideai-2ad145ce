@@ -24,6 +24,7 @@ export type AssistantAnswer = {
 
 /** Sanitise user text: cap length and strip control characters before it reaches the model. */
 function clean(text: string) {
+  // eslint-disable-next-line no-control-regex -- deliberately stripping control characters
   return text.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, " ").slice(0, 2000);
 }
 
@@ -32,7 +33,10 @@ export async function askAssistant(turns: ChatTurn[]): Promise<AssistantAnswer> 
   const question = [...recent].reverse().find((turn) => turn.role === "user")?.content ?? "";
   if (!question) throw new AssistantError("Please type a question first.", 400);
 
-  const history = recent.filter((t) => t.role === "user").slice(-3).map((t) => t.content);
+  const history = recent
+    .filter((t) => t.role === "user")
+    .slice(-3)
+    .map((t) => t.content);
   const { context, services } = await retrieveContext(question, history);
 
   const messages: GatewayMessage[] = [

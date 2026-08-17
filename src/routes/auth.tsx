@@ -117,7 +117,9 @@ function AuthPage() {
       if (signUpError) {
         const message = signUpError.message.toLowerCase();
         if (message.includes("already") || message.includes("registered")) {
-          return setError("That email can't be used to create a new account. Try signing in instead.");
+          return setError(
+            "That email can't be used to create a new account. Try signing in instead.",
+          );
         }
         if (message.includes("password")) return setError("Please choose a stronger password.");
         return setError("We couldn't create your account. Please try again.");
@@ -208,7 +210,11 @@ function AuthPage() {
                 value={password}
                 onChange={setPassword}
                 autoComplete={mode === "signup" ? "new-password" : "current-password"}
-                hint={mode === "signup" ? "At least 8 characters, with a letter and a number." : undefined}
+                hint={
+                  mode === "signup"
+                    ? "At least 8 characters, with a letter and a number."
+                    : undefined
+                }
               />
             ) : null}
 
@@ -241,12 +247,18 @@ function AuthPage() {
             ) : null}
 
             {error ? (
-              <p role="alert" className="rounded-2xl bg-destructive/10 px-3.5 py-2.5 text-sm text-destructive">
+              <p
+                role="alert"
+                className="rounded-2xl bg-destructive/10 px-3.5 py-2.5 text-sm text-destructive"
+              >
                 {error}
               </p>
             ) : null}
             {notice ? (
-              <p role="status" className="rounded-2xl bg-success/10 px-3.5 py-2.5 text-sm text-foreground/90">
+              <p
+                role="status"
+                className="rounded-2xl bg-success/10 px-3.5 py-2.5 text-sm text-foreground/90"
+              >
                 {notice}
               </p>
             ) : null}
@@ -257,7 +269,11 @@ function AuthPage() {
               className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-glow hover:brightness-110 disabled:opacity-60"
             >
               {busy ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
-              {mode === "signup" ? "Create account" : mode === "forgot" ? "Send reset link" : "Sign in"}
+              {mode === "signup"
+                ? "Create account"
+                : mode === "forgot"
+                  ? "Send reset link"
+                  : "Sign in"}
             </button>
           </form>
 

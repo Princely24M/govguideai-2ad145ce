@@ -117,9 +117,7 @@ function ChatPage() {
   useEffect(() => {
     if (user || messages.length === 0) return;
     stashGuestConversation(
-      messages
-        .filter((m) => !m.isError)
-        .map(({ role, content }) => ({ role, content })),
+      messages.filter((m) => !m.isError).map(({ role, content }) => ({ role, content })),
     );
   }, [messages, user]);
 
@@ -203,22 +201,22 @@ function ChatPage() {
           </div>
           {!isEmpty ? (
             <div className="flex items-center gap-2">
-            {!user ? (
-              <Link
-                to="/auth"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground transition-all hover:brightness-110"
+              {!user ? (
+                <Link
+                  to="/auth"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground transition-all hover:brightness-110"
+                >
+                  Save this conversation
+                </Link>
+              ) : null}
+              <button
+                type="button"
+                onClick={clearConversation}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3.5 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               >
-                Save this conversation
-              </Link>
-            ) : null}
-            <button
-              type="button"
-              onClick={clearConversation}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3.5 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-            >
-              <RotateCcw className="size-3.5" aria-hidden="true" />
-              Clear conversation
-            </button>
+                <RotateCcw className="size-3.5" aria-hidden="true" />
+                Clear conversation
+              </button>
             </div>
           ) : null}
         </div>
@@ -340,7 +338,10 @@ function Thinking() {
           <span
             key={i}
             className="size-1.5 rounded-full bg-primary"
-            style={{ animation: "thinking 1.4s var(--ease-soft) infinite", animationDelay: `${i * 160}ms` }}
+            style={{
+              animation: "thinking 1.4s var(--ease-soft) infinite",
+              animationDelay: `${i * 160}ms`,
+            }}
           />
         ))}
       </span>
@@ -394,7 +395,9 @@ function AssistantBubble({
       setRated(null);
       return;
     }
-    toast.success(rating === "helpful" ? "Thanks — glad it helped" : "Thanks — we'll use this to improve");
+    toast.success(
+      rating === "helpful" ? "Thanks — glad it helped" : "Thanks — we'll use this to improve",
+    );
   };
 
   return (
@@ -434,7 +437,11 @@ function AssistantBubble({
           onClick={copy}
           className="inline-flex items-center gap-1.5 rounded-full border border-border/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
         >
-          {copied ? <Check className="size-3.5" aria-hidden="true" /> : <Copy className="size-3.5" aria-hidden="true" />}
+          {copied ? (
+            <Check className="size-3.5" aria-hidden="true" />
+          ) : (
+            <Copy className="size-3.5" aria-hidden="true" />
+          )}
           {copied ? "Copied" : "Copy"}
         </button>
         <span className="ml-auto flex items-center gap-1.5">

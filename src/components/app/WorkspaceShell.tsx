@@ -54,7 +54,10 @@ export function WorkspaceShell({
             className="absolute inset-0 bg-ink/40 backdrop-blur-sm"
           />
           <div className="absolute inset-y-0 left-0 w-[19rem] max-w-[86vw] border-r border-border/70 bg-sidebar shadow-elevated">
-            <SidebarBody activeConversationId={activeConversationId} onNavigate={() => setOpen(false)} />
+            <SidebarBody
+              activeConversationId={activeConversationId}
+              onNavigate={() => setOpen(false)}
+            />
           </div>
         </div>
       ) : null}
@@ -135,7 +138,12 @@ function SidebarBody({
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between gap-2 px-4 pt-4">
-        <Link to="/" onClick={onNavigate} aria-label="GovGuide AI — home" className="flex items-center">
+        <Link
+          to="/"
+          onClick={onNavigate}
+          aria-label="GovGuide AI — home"
+          className="flex items-center"
+        >
           <BrandLogo size="sm" />
         </Link>
         {onNavigate ? (
@@ -197,7 +205,8 @@ function SidebarBody({
                   onClick={onNavigate}
                   className={cn(
                     "block truncate rounded-xl px-3 py-2.5 text-sm text-foreground/85 transition-colors hover:bg-secondary",
-                    activeConversationId === conversation.id && "bg-secondary font-semibold text-foreground",
+                    activeConversationId === conversation.id &&
+                      "bg-secondary font-semibold text-foreground",
                   )}
                 >
                   {conversation.title}
@@ -227,7 +236,9 @@ function SidebarBody({
         ))}
 
         <div className="mt-1 flex items-center gap-2 rounded-xl px-3 py-2.5">
-          <span className="min-w-0 flex-1 truncate text-xs text-muted-foreground">{user?.email}</span>
+          <span className="min-w-0 flex-1 truncate text-xs text-muted-foreground">
+            {user?.email}
+          </span>
           <button
             type="button"
             onClick={() => void signOut()}
