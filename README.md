@@ -1,248 +1,1170 @@
 # GOVGUIDE AI 🇿🇦
+<img width="800" height="800" style="float: right; margin: 10px;" alt="GovGuide Ai Logo" src="https://github.com/user-attachments/assets/7a06770c-dab0-4aca-9e33-762ccc64b778" />
 
-**Your intelligent guide to understanding government services.**
+## Your intelligent guide to understanding government services.
 
-> Ask. Understand. Know what to do next.
+**GOVGUIDE AI** is an AI-powered public-service information assistant designed to help citizens understand government procedures, requirements, documents, application processes, service locations, and frequently asked questions through simple conversational interaction.
 
-GovGuide AI is an AI-powered public-service information assistant for South Africa. It answers
-questions about government procedures, required documents, application steps, fees and processing
-times in plain language — and links the official source behind every answer.
+Instead of forcing users to navigate complicated government websites and documents, GOVGUIDE AI allows users to ask questions naturally and receive clear, structured guidance.
 
-Built as a 1-month AI Bootcamp team project.
-
----
-
-## Problem statement
-
-Government information in South Africa is scattered across many departmental websites, written in
-dense legal or administrative language, and often out of date. People make wasted trips to offices
-because they arrive with the wrong documents or misunderstand eligibility rules.
-
-## Objectives
-
-- Explain government procedures in plain, simple language.
-- Always show the official source and the date the information was last verified.
-- Never invent fees, requirements, addresses or deadlines.
-- Let anyone try the assistant with no sign-up, then keep their history if they create an account.
-
-## Target users
-
-First-time applicants, students, job seekers, small business owners, caregivers applying for
-grants, and anyone helping a family member navigate a government process.
+> **Ask. Understand. Know what to do next.**
 
 ---
 
-## Features (IMPLEMENTED)
+## 📌 Project Overview
 
-### Landing page
+Government information may be available online, but it can often be difficult for citizens to find, interpret, and understand.
 
-Branded hero with the official GovGuide logo, the public-service problem, how the assistant works,
-AI capabilities, trust and responsible-AI messaging, accessibility notes, featured services and a
-call to action into **Ask GovGuide**.
+A citizen may ask:
 
-### Guest chat — `/chat`
+* What documents do I need?
+* How do I apply?
+* Where do I apply?
+* What are the requirements?
+* How much does the service cost?
+* What happens after I apply?
+* Which government office should I visit?
+* What do I need to bring with me?
 
-No account required. Suggested starter questions, conversational context, thinking state, error
-handling, copy answer, thumbs up/down feedback, and a "Save this conversation" path that carries the
-transcript into a new account on sign-up.
+GOVGUIDE AI aims to simplify this experience by providing a conversational interface for accessing and understanding public-service information.
 
-### Service explorer — `/services`, `/services/$slug`
+### Example
 
-Browsable, searchable directory of the verified services with category filters. Each detail page
-lists documents, steps, fees, processing time, the responsible authority, the official URL and the
-last-verified date.
+**User:**
 
-### Authentication — `/auth`, `/reset-password`
+> What documents do I need to apply for a driver's licence?
 
-Email + password sign-up, sign-in, sign-out, password reset, and persistent sessions. The
-`/_authenticated/*` route subtree is gated and redirects unauthenticated visitors to `/auth`.
+**GOVGUIDE AI:**
 
-### Conversation management — `/dashboard`, `/c/$conversationId`, `/archived`
-
-Create conversations, send messages, receive AI answers with sources, auto-generated titles,
-sidebar history, search across conversations, rename, archive, restore and delete.
-
-### Profile and settings — `/settings`
-
-Edit display name; appearance switch for Light / Dark / System (System follows the OS/browser
-preference); danger zone to delete all conversations behind an explicit confirmation; sign out.
-
-### Usage — `/usage`
-
-AI response count plus input, output and total tokens, aggregated from the token metadata the AI
-provider returns on each response. No values are estimated or fabricated.
-
-### About — `/about`
-
-Accuracy rules, source-tracing methodology and accessibility commitments.
-
-## Planned / future
-
-See [docs/FUTURE_ROADMAP.md](docs/FUTURE_ROADMAP.md) — multilingual answers (isiZulu, isiXhosa,
-Afrikaans, Sesotho), voice input, document checklists as downloadable PDFs, office locator, semantic
-(vector) retrieval, and an admin console for maintaining verified content.
+The assistant should provide a structured response explaining the relevant requirements, application steps, important considerations, and—where available—official sources for verification.
 
 ---
 
-## AI assistant logic
+# 🎯 Project Objectives
 
-Retrieval-grounded generation: the user's question is matched against the verified service knowledge
-base (keyword + synonym mapping, e.g. "identity" → `smart-id`), the matching verified records are
-injected into the system prompt as the only permitted factual context, and the model answers from
-that context. Matched records are returned to the UI as source citations.
+GOVGUIDE AI was developed as part of an **AI Bootcamp** focused on building practical AI solutions.
 
-The system prompt follows a fixed, versioned structure:
+The project demonstrates the team's ability to:
+
+* Understand AI fundamentals
+* Apply prompt engineering
+* Design conversational AI systems
+* Build a real-world AI application
+* Integrate an LLM
+* Design user-centred experiences
+* Implement authentication
+* Store and manage conversations
+* Track AI usage
+* Apply responsible AI principles
+* Document a software project professionally
+* Use GitHub for collaboration and portfolio development
+
+---
+
+# 🚀 Core Features
+
+## 🤖 Ask GovGuide
+
+Visitors can interact with GOVGUIDE AI directly from the landing page without immediately creating an account.
+
+This provides a low-friction way for users to experience the product.
+
+### Guest flow
 
 ```text
-ROLE → CONTEXT → TASK → CONSTRAINTS → BEHAVIOUR → OUTPUT FORMAT
+Landing Page
+      ↓
+Ask GovGuide
+      ↓
+Temporary Conversation
+      ↓
+Ask Question
+      ↓
+AI Response
+      ↓
+Continue Conversation
 ```
 
-Details: [docs/AI_LOGIC.md](docs/AI_LOGIC.md), [docs/PROMPT_ENGINEERING.md](docs/PROMPT_ENGINEERING.md).
+Guest conversations are temporary and are not treated as persistent account history.
 
-## Responsible AI
-
-GovGuide AI is an **informational assistant, not an official government authority**. It does not
-invent fees, office addresses, requirements, eligibility rules, deadlines, procedures or policies.
-When something cannot be verified it says so and points the user to the official source. A
-disclaimer is shown on the landing page, in the chat composer and under every answer.
+Users can create an account when they want to retain conversations.
 
 ---
 
-## UI/UX
+# 👤 Account Creation & Authentication
 
-Premium public-service aesthetic — glassmorphism and frosted surfaces, gradient mesh backgrounds,
-ambient glow, layered depth, floating cards, soft shadows, generous whitespace and calm purposeful
-motion. All colour is expressed as semantic OKLCH design tokens in `src/styles.css` with a full dark
-theme. Decorative motion is reduced under `prefers-reduced-motion`. Fully responsive across desktop,
-tablet and mobile. See [docs/UI_UX_DESIGN.md](docs/UI_UX_DESIGN.md).
+Users can create an account or sign in to access persistent features.
 
-## Technology stack
+Authenticated users can:
 
-| Layer           | Technology                                               |
-| --------------- | -------------------------------------------------------- |
-| Framework       | TanStack Start v1 (React 19, SSR, file-based routing)    |
-| Build           | Vite                                                     |
-| Language        | TypeScript                                               |
-| Styling         | Tailwind CSS v4 + OKLCH design tokens                    |
-| UI primitives   | Radix UI / shadcn-style components, lucide-react, sonner |
-| Data fetching   | TanStack Query + route loaders                           |
-| Backend logic   | TanStack `createServerFn` server functions               |
-| Database & auth | Supabase (PostgreSQL, Auth, Row Level Security)          |
-| AI              | Lovable AI Gateway (Gemini-class model)                  |
-| Hosting         | Lovable (edge/worker runtime)                            |
+* Create conversations
+* Save conversations
+* View chat history
+* Search conversations
+* Archive conversations
+* Manage their profile
+* Manage appearance preferences
+* View AI usage
+* Delete conversations
+* Sign out
 
-## Architecture
+### Authentication flow
 
 ```text
-Browser (React 19 / TanStack Router)
-        │  typed RPC (createServerFn)
-        ▼
-Server functions  ──►  Supabase (Postgres + RLS, Auth)
-        │
-        └──────────►  AI Gateway (chat completion + token usage)
+Landing Page
+      ↓
+Create Account / Sign In
+      ↓
+Authentication
+      ↓
+Authenticated Dashboard
+      ↓
+Personal Chat Workspace
 ```
-
-See [docs/SYSTEM_ARCHITECTURE.md](docs/SYSTEM_ARCHITECTURE.md).
-
-## Database
-
-`government_services`, `knowledge_sources`, `faq_entries`, `chat_feedback`, `profiles`,
-`conversations`, `messages`. Row Level Security is enabled on every table; user-owned rows are
-scoped to `auth.uid()`. See [docs/DATABASE_DESIGN.md](docs/DATABASE_DESIGN.md).
-
-## Security
-
-Authorization is enforced in Postgres via RLS, not in the frontend. No secret keys live in the
-repository — only the Supabase project URL and the publishable (anon) key, which are client-safe by
-design. Model and service-role credentials are backend secrets injected at runtime.
-See [docs/SECURITY.md](docs/SECURITY.md).
-
-## Testing
-
-Manual test matrix covering landing, guest chat, auth, conversations, settings, danger zone, usage
-and responsive breakpoints: [docs/TESTING.md](docs/TESTING.md). Automated tests are **planned**.
 
 ---
 
-## Project structure
+# 💬 Conversation Management
+
+Authenticated users can manage their conversations.
+
+### Supported actions
+
+* Start a new conversation
+* View previous conversations
+* Search conversations
+* Open conversations
+* Continue conversations
+* Archive conversations
+* View archived conversations
+* Delete conversations
+
+### Conversation model
 
 ```text
-src/routes/            File-based routes (landing, /chat, /services, /auth, /_authenticated/*)
-src/routes/api/        Server routes for external HTTP callers
-src/components/        UI components (branding, header/footer, chat, workspace shell)
-src/lib/               Server functions (*.functions.ts) and server-only logic (*.server.ts)
-src/integrations/      Generated Supabase clients and auth middleware
-src/assets/            Images and brand assets
-src/styles.css         Tailwind v4 theme + OKLCH design tokens
-supabase/migrations/   SQL schema, RLS policies and seed data
-docs/                  Architecture, AI logic, database, security and testing docs
+User
+ │
+ └── Conversation
+       │
+       ├── User Message
+       ├── AI Response
+       ├── User Message
+       └── AI Response
 ```
 
-## Installation
+Each conversation belongs to the authenticated user.
 
-```sh
-git clone https://github.com/Thenjiwembi/GovGuide-AI.git
-cd GovGuide-AI
+---
+
+# 🔎 Conversation Search
+
+Users can search their saved conversations.
+
+Example:
+
+```text
+Search: passport
+```
+
+Possible results:
+
+```text
+Passport Application Requirements
+Passport Renewal
+Passport Application Process
+```
+
+The search functionality allows users to quickly return to previously discussed information.
+
+---
+
+# 📦 Chat Archiving
+
+Users can archive conversations that they no longer want displayed in their active conversation list.
+
+```text
+Active Conversation
+        ↓
+      Archive
+        ↓
+Archived Conversation
+```
+
+Archiving is different from deletion.
+
+Archived conversations remain associated with the user's account unless they are permanently deleted.
+
+---
+
+# 📊 AI Usage
+
+GOVGUIDE AI provides users with visibility into their AI usage.
+
+The system can display:
+
+* Number of AI responses
+* Input tokens
+* Output tokens
+* Total tokens
+
+Example:
+
+```text
+AI RESPONSES
+128
+
+INPUT TOKENS
+21,430
+
+OUTPUT TOKENS
+27,190
+
+TOTAL TOKENS
+48,620
+```
+
+Usage information should be calculated from actual AI provider metadata where available.
+
+The application must never invent token statistics.
+
+---
+
+# ⚙️ Profile & Settings
+
+Authenticated users can manage their account settings.
+
+## Profile
+
+Users can edit:
+
+* Display name
+
+---
+
+## Appearance
+
+Users can select:
+
+* Light
+* Dark
+* System
+
+### System mode
+
+System mode follows the user's device or operating-system theme preference.
+
+---
+
+# ⚠️ Danger Zone
+
+The settings area contains a dedicated Danger Zone for destructive actions.
+
+Users can permanently delete their conversations.
+
+Before deletion, the application must request confirmation.
+
+```text
+Delete all conversations?
+
+All saved conversations will be permanently deleted.
+This action cannot be undone.
+
+[Cancel]
+
+[Delete All Conversations]
+```
+
+The delete operation must only affect conversations belonging to the authenticated user.
+
+---
+
+# 🔐 Authentication & Security
+
+Security is an important part of the GOVGUIDE AI architecture.
+
+The application is designed around:
+
+* Authentication
+* Authorization
+* Protected application areas
+* User-specific data
+* Secure database access
+* Environment variables
+* Database security policies
+
+A user must never be able to access another user's:
+
+* Conversations
+* Messages
+* Usage information
+* Profile information
+
+Frontend checks alone should not be considered sufficient authorization.
+
+Database-level access controls should be used where supported.
+
+---
+
+# 🧠 AI Assistant Logic
+
+The GOVGUIDE AI assistant follows a structured conversational process.
+
+```text
+USER QUESTION
+      ↓
+INPUT VALIDATION
+      ↓
+INTENT UNDERSTANDING
+      ↓
+CONVERSATION CONTEXT
+      ↓
+RELEVANT INFORMATION
+      ↓
+LLM PROCESSING
+      ↓
+RESPONSE VALIDATION
+      ↓
+STRUCTURED RESPONSE
+      ↓
+USER
+```
+<img width="1312" height="761" alt="ai-question-flow-diagram" src="https://github.com/user-attachments/assets/9e84dd67-35fd-4530-8ca6-630750e3ba3f" />
+
+---
+
+# 🧩 Conversational Context
+
+The assistant should maintain context throughout a conversation.
+
+### Example
+
+**User:**
+
+> How do I apply for a driver's licence?
+
+**AI:**
+
+Provides information about the application process.
+
+**User:**
+
+> Where do I apply?
+
+The AI should understand that "where" refers to the driver's licence application.
+
+**User:**
+
+> What documents do I need?
+
+The assistant should continue using the previous context.
+
+This allows GOVGUIDE AI to behave as a conversational assistant rather than a simple question-and-answer search box.
+
+---
+
+# 📝 Prompt Engineering
+
+GOVGUIDE AI uses structured prompt engineering to control the behaviour of the assistant.
+
+The prompt structure follows:
+
+```text
+ROLE
+ ↓
+CONTEXT
+ ↓
+TASK
+ ↓
+CONSTRAINTS
+ ↓
+BEHAVIOUR
+ ↓
+OUTPUT FORMAT
+```
+
+### Example
+
+```text
+ROLE:
+You are GOVGUIDE AI, a public-service information assistant.
+
+CONTEXT:
+Help users understand government services,
+procedures, requirements and next steps.
+
+TASK:
+Answer the user's public-service question clearly.
+
+CONSTRAINTS:
+Do not fabricate requirements.
+Do not invent fees, locations or procedures.
+Do not present uncertain information as verified fact.
+
+BEHAVIOUR:
+Use simple language.
+Break complicated procedures into steps.
+Ask clarifying questions when necessary.
+Identify uncertainty.
+
+OUTPUT:
+Provide a concise explanation,
+requirements, steps, important notes
+and sources where available.
+```
+<img width="1233" height="687" alt="prompt-engineering-diagram (1)" src="https://github.com/user-attachments/assets/ca037d1e-4a20-4345-8e13-c164b52510d2" />
+
+---
+
+# 🛡️ Responsible AI
+
+GOVGUIDE AI is an informational assistant and is **not an official government authority**.
+
+Government information can change.
+
+Therefore, the assistant should:
+
+* Avoid hallucinating information
+* Avoid inventing requirements
+* Avoid inventing government fees
+* Avoid inventing office locations
+* Communicate uncertainty
+* Ask clarifying questions
+* Encourage verification of important information
+* Prefer authoritative sources where available
+
+### Example
+
+If the assistant cannot verify a current application fee, it should say:
+
+> I couldn't verify the current fee. Please check the relevant official government service before applying.
+
+It should not provide a made-up amount.
+
+---
+
+# 🎨 Premium UI/UX Design System
+
+GOVGUIDE AI uses a custom **Premium UI/UX & Motion Design System**.
+
+The visual identity is designed to communicate:
+
+* Trust
+* Clarity
+* Intelligence
+* Accessibility
+* Precision
+* Reliability
+* Modern public service
+
+The interface should feel like a premium digital public-service platform rather than a generic AI chatbot.
+
+---
+
+## Visual Language
+
+The design system uses:
+
+* Glassmorphism
+* Frosted glass panels
+* Gradient mesh backgrounds
+* Soft lighting
+* Ambient glow
+* Layered depth
+* Premium shadows
+* Floating cards
+* Modern typography
+* Elegant whitespace
+* Subtle motion
+* Cinematic imagery where appropriate
+* Abstract AI-inspired graphics
+
+Visual effects are used selectively.
+
+**Clarity always takes priority over decoration.**
+
+---
+
+# 🎬 Motion Design
+
+Motion is designed to be:
+
+* Smooth
+* Calm
+* Purposeful
+* Responsive
+* Accessible
+
+Motion is used to communicate:
+
+* Feedback
+* Progress
+* Hierarchy
+* State changes
+* Continuity
+
+Examples include:
+
+* AI thinking states
+* Response streaming
+* Button interactions
+* Card transitions
+* Page transitions
+* File processing
+* Progress indicators
+* Toast notifications
+
+---
+
+# 🤖 AI Thinking State
+
+Instead of using a generic loading animation, GOVGUIDE AI uses a branded AI activity state.
+
+Example:
+
+```text
+◉ Finding the right information...
+```
+
+The interface may use subtle ambient lighting or a guidance indicator while the AI is processing.
+
+---
+
+# 📱 Responsive Design
+
+GOVGUIDE AI is designed for:
+
+### Desktop
+
+* Expanded navigation
+* Full chat workspace
+* Multi-column layouts
+* Richer motion effects
+
+### Tablet
+
+* Adaptive layouts
+* Collapsible navigation
+* Reduced motion complexity
+
+### Mobile
+
+* Full-width chat
+* Navigation drawer
+* Touch-friendly controls
+* Simplified animations
+* Mobile-friendly composer
+
+Minimum touch target guidance:
+
+```text
+≈ 44px
+```
+
+Mouse-dependent effects should be disabled on touch devices.
+
+---
+
+# ♿ Accessibility
+
+Accessibility is part of the design system.
+
+The application aims to support:
+
+* Keyboard navigation
+* Visible focus states
+* Semantic HTML
+* Screen-reader compatibility
+* Sufficient colour contrast
+* Responsive typography
+* Touch-friendly controls
+* Reduced motion
+
+The application should respect:
+
+```text
+prefers-reduced-motion
+```
+
+When reduced motion is enabled, decorative animations should be minimized or removed while essential feedback remains available.
+
+---
+
+# 🏗️ System Architecture
+
+High-level architecture:
+
+```text
+┌──────────────────────────────────────┐
+│              GOVGUIDE UI             │
+│          React + TypeScript          │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│          APPLICATION LAYER           │
+│                                      │
+│ Chat │ Auth │ Profile │ Usage       │
+│ Search │ Archive │ Settings         │
+└───────────────┬───────────┬──────────┘
+                │           │
+                ▼           ▼
+       ┌─────────────┐ ┌──────────────┐
+       │  Supabase   │ │  AI Provider │
+       │             │ │              │
+       │ PostgreSQL  │ │     LLM      │
+       │ Auth        │ │              │
+       │ Security    │ │              │
+       └─────────────┘ └──────────────┘
+```
+
+---
+
+# 🛠️ Technology Stack
+
+The recommended technology stack is:
+
+| Layer            | Technology    |
+| ---------------- | ------------- |
+| Frontend         | React         |
+| Language         | TypeScript    |
+| Styling          | Tailwind CSS  |
+| UI Components    | shadcn/ui     |
+| Animation        | Framer Motion |
+| Backend Platform | Supabase      |
+| Database         | PostgreSQL    |
+| Authentication   | Supabase Auth |
+| AI               | LLM API       |
+| Development      | Lovable       |
+| Version Control  | Git + GitHub  |
+
+The exact implementation may evolve during development.
+
+---
+
+# 🗄️ Data Structure
+
+A simplified data model:
+
+```text
+USER
+ │
+ ├── PROFILE
+ │
+ ├── CONVERSATIONS
+ │       │
+ │       └── MESSAGES
+ │
+ └── USAGE
+```
+
+### Profile
+
+```text
+id
+email
+display_name
+created_at
+updated_at
+```
+
+### Conversations
+
+```text
+id
+user_id
+title
+status
+created_at
+updated_at
+archived_at
+```
+
+### Messages
+
+```text
+id
+conversation_id
+role
+content
+input_tokens
+output_tokens
+total_tokens
+created_at
+```
+
+### Usage
+
+```text
+id
+user_id
+conversation_id
+input_tokens
+output_tokens
+total_tokens
+created_at
+```
+
+---
+
+# 🔄 Main User Flows
+
+## Guest Chat
+
+```text
+Landing Page
+      ↓
+Ask GovGuide
+      ↓
+Enter Question
+      ↓
+AI Processes Request
+      ↓
+AI Response
+      ↓
+Continue Chat
+```
+
+---
+
+## Registered User
+
+```text
+Landing Page
+      ↓
+Create Account / Sign In
+      ↓
+Dashboard
+      ↓
+New Conversation
+      ↓
+Ask Question
+      ↓
+AI Response
+      ↓
+Conversation Saved
+```
+
+---
+
+## Conversation History
+
+```text
+Dashboard
+   ↓
+Chat History
+   ↓
+Search / Browse
+   ↓
+Select Conversation
+   ↓
+Open Conversation
+   ↓
+Continue Chat
+```
+
+---
+
+## Archive
+
+```text
+Conversation
+      ↓
+Archive
+      ↓
+Archived
+      ↓
+Restore or Delete
+```
+
+---
+
+## Delete All Conversations
+
+```text
+Settings
+    ↓
+Danger Zone
+    ↓
+Delete All Conversations
+    ↓
+Confirmation
+    ↓
+Delete
+    ↓
+Conversations Removed
+```
+
+---
+
+# 🧪 Testing Strategy
+
+Testing should cover both the application and the AI.
+
+## Functional Testing
+
+Test:
+
+* Account creation
+* Login
+* Logout
+* New conversation
+* Sending messages
+* Chat history
+* Search
+* Archive
+* Restore
+* Profile editing
+* Theme switching
+* Usage display
+* Delete conversations
+
+---
+
+## AI Testing
+
+Test:
+
+* Normal questions
+* Follow-up questions
+* Ambiguous questions
+* Questions requiring clarification
+* Unknown questions
+* Out-of-scope questions
+* Questions containing incorrect assumptions
+* Questions requiring current information
+
+---
+
+## Security Testing
+
+Verify that:
+
+* Users cannot access other users' conversations
+* Users cannot modify another user's profile
+* Protected pages require authentication
+* API secrets are not exposed
+* Database policies correctly restrict user data
+
+---
+
+## Responsive Testing
+
+Test the application on:
+
+```text
+Desktop
+Tablet
+Mobile
+```
+
+Check:
+
+* Navigation
+* Chat composer
+* Message rendering
+* Buttons
+* Modals
+* Settings
+* Conversation history
+* Accessibility
+
+---
+
+# 📁 Recommended Repository Structure
+
+```text
+govguide-ai/
+│
+├── public/
+│   ├── images/
+│   ├── icons/
+│   └── favicon/
+│
+├── src/
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── chat/
+│   │   ├── auth/
+│   │   ├── navigation/
+│   │   └── settings/
+│   │
+│   ├── pages/
+│   │   ├── Landing/
+│   │   ├── Dashboard/
+│   │   ├── Chat/
+│   │   ├── Profile/
+│   │   ├── Settings/
+│   │   └── Usage/
+│   │
+│   ├── services/
+│   │   ├── ai/
+│   │   ├── auth/
+│   │   └── conversations/
+│   │
+│   ├── hooks/
+│   ├── lib/
+│   ├── types/
+│   └── utils/
+│
+├── supabase/
+│   ├── migrations/
+│   └── functions/
+│
+├── docs/
+│   ├── architecture.md
+│   ├── ai-logic.md
+│   ├── prompt-engineering.md
+│   ├── database.md
+│   ├── security.md
+│   ├── testing.md
+│   └── design-system.md
+│
+├── .env.example
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+---
+
+# 🔑 Environment Variables
+
+Sensitive credentials must never be committed to GitHub.
+
+Use an environment file locally.
+
+Example:
+
+```env
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+
+AI_API_KEY=
+AI_MODEL=
+```
+
+Commit:
+
+```text
+.env.example
+```
+
+Do not commit:
+
+```text
+.env
+```
+
+---
+
+# 🚀 Getting Started
+
+## 1. Clone the repository
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+```
+
+## 2. Enter the project
+
+```bash
+cd govguide-ai
+```
+
+## 3. Install dependencies
+
+```bash
 npm install
-npm run dev        # http://localhost:8080
 ```
 
-Scripts defined in `package.json`: `dev`, `build`, `build:dev`, `preview`, `lint`, `format`.
+## 4. Configure environment variables
 
-## Environment variables
+Create a `.env` file using `.env.example` as a guide.
 
-Copy [`.env.example`](.env.example) to `.env` and fill in your own values. `.env` is git-ignored and
-must never be committed — real credentials stay local or in the hosting environment.
+Add the required:
 
-```sh
-cp .env.example .env
+* Supabase configuration
+* AI provider configuration
+
+## 5. Start the development server
+
+```bash
+npm run dev
 ```
-
-`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID`,
-`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` are client-safe publishable values (safe only because
-Row Level Security is enforced). `LOVABLE_API_KEY` is a server-side secret for the AI Gateway and is
-set in the hosting environment only.
-
-## Deployment
-
-The app is deployed from Lovable to the edge runtime. `npm run build` produces the production
-bundle; Supabase migrations in `supabase/migrations/` are applied to the linked project.
-
-Live demo: https://govguideai.lovable.app
-
-## Screenshots
-
-Place captures in [`screenshots/`](screenshots) (`landing-page.png`, `guest-chat.png`, `sign-in.png`,
-`dashboard.png`, `chat-history.png`, `search.png`, `archive.png`, `settings.png`, `usage.png`,
-`mobile.png`).
 
 ---
 
-## Team
+# 👥 Team
 
-Roles are leads, not exclusive ownership — every feature was a collaboration.
+| Team Member  | Role                     | Primary Responsibilities                                                         |
+| ------------ | ------------------------ | -------------------------------------------------------------------------------- |
+| **Thenjiwe** | Product & AI/UX Lead     | Product requirements, user flows, AI behaviour, prompt engineering, UX direction |
+| **Chichi** | Frontend & UI Developer  | React interface, responsive design, components, animations and accessibility     |
+| **Princely**   | Backend & Data Developer | Database, authentication, profiles, conversations, security and usage data       |
+| **Sinawo**   | Researcher & QA Lead | AI integration, token tracking, AI testing, edge cases and quality assurance     |
 
-| Member       | Role                     | Responsibilities                                                                    |
-| ------------ | ------------------------ | ----------------------------------------------------------------------------------- |
-| **Thenjiwe** | Product & AI/UX Lead     | Product direction, AI behaviour, prompt engineering, UX architecture, documentation |
-| **Chichi**   | Frontend & UI Developer  | React, responsive UI, landing page, chat interface, design system                   |
-| **Princely** | Backend & Data Developer | Supabase, authentication, database, RLS, backend logic, data security               |
-| **Sinawo**   | AI Integration & QA Lead | AI API integration, response handling, usage tracking, testing, error handling, QA  |
+The team collaborates through GitHub and follows a shared development workflow.
 
-## Project purpose
+---
 
-Built as an AI Bootcamp group project, applying AI, prompt engineering, conversational AI and
-full-stack development to a real-world public-service problem.
+# 🌱 Development Workflow
 
-## Documentation
+Recommended workflow:
 
-- [Project documentation](docs/PROJECT_DOCUMENTATION.md)
-- [System architecture](docs/SYSTEM_ARCHITECTURE.md)
-- [AI logic](docs/AI_LOGIC.md)
-- [Prompt engineering](docs/PROMPT_ENGINEERING.md)
-- [Database design](docs/DATABASE_DESIGN.md)
-- [User flows](docs/USER_FLOWS.md)
-- [UI/UX design](docs/UI_UX_DESIGN.md)
-- [Security](docs/SECURITY.md)
-- [Testing](docs/TESTING.md)
-- [Future roadmap](docs/FUTURE_ROADMAP.md)
+```text
+Issue
+  ↓
+Feature Branch
+  ↓
+Development
+  ↓
+Testing
+  ↓
+Pull Request
+  ↓
+Code Review
+  ↓
+Merge
+```
+
+Example branch:
+
+```bash
+git checkout -b feature/conversation-search
+```
+
+Example commit:
+
+```bash
+git commit -m "feat: add conversation search"
+```
+
+---
+
+# 🎓 AI Bootcamp Learning Outcomes
+
+This project demonstrates practical application of:
+
+### AI Foundations
+
+* Artificial Intelligence
+* Generative AI
+* Large Language Models
+* Conversational AI
+
+### Prompt Engineering
+
+* Role definition
+* Context
+* Constraints
+* Output formatting
+* Behaviour instructions
+* Conversation context
+
+### Software Development
+
+* React
+* TypeScript
+* Database design
+* Authentication
+* API integration
+* Responsive development
+
+### AI Product Design
+
+* User-centred design
+* Conversation design
+* Responsible AI
+* Accessibility
+* AI transparency
+
+### Professional Development
+
+* GitHub
+* Documentation
+* Team collaboration
+* Portfolio development
+* Project presentation
+
+---
+
+# ⚠️ Project Limitations
+
+GOVGUIDE AI is an AI-powered informational prototype and should **not be considered an official government authority**.
+
+AI-generated information can potentially be:
+
+* Incorrect
+* Incomplete
+* Outdated
+* Misinterpreted
+
+Users should verify important information with the relevant official government authority before making decisions, paying fees, travelling to an office, or submitting applications.
+
+---
+
+# 🔮 Future Development
+
+Future versions could include:
+
+* Retrieval-Augmented Generation (RAG)
+* Verified government data sources
+* Automatic source citations
+* Multilingual support
+* Voice interaction
+* Document upload and analysis
+* Government office locator
+* Service eligibility checking
+* Personalized application checklists
+* Service reminders
+* Government-service directory
+* More advanced analytics
+* Official-source monitoring
+
+---
+
+# 🌍 Vision
+
+GOVGUIDE AI aims to make government information easier for ordinary citizens to understand and act upon.
+
+The long-term experience is built around:
+
+```text
+WHAT?
+  ↓
+WHY?
+  ↓
+WHERE?
+  ↓
+HOW?
+  ↓
+WHAT NEXT?
+```
+
+The goal is not simply to give users an AI-generated answer.
+
+The goal is to help users understand the information and confidently identify their **next step**.
+
+---
+
+# ⭐ Project Status
+
+**Project:** GOVGUIDE AI
+
+**Type:** AI-powered Public-Service Information Assistant
+
+**Stage:** AI Bootcamp Project
+
+**Development Status:** Active Development
+
+**Primary Platform:** Web
+
+**Target Devices:** Desktop, Tablet and Mobile
+
+---
+
+## GOVGUIDE AI
+
+### Ask. Understand. Know what to do next.
+
+Built as a practical demonstration of **AI, prompt engineering, conversational design, software development and responsible AI.**
