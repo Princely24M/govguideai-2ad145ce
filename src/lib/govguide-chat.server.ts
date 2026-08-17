@@ -32,7 +32,10 @@ export async function askAssistant(turns: ChatTurn[]): Promise<AssistantAnswer> 
   const question = [...recent].reverse().find((turn) => turn.role === "user")?.content ?? "";
   if (!question) throw new AssistantError("Please type a question first.", 400);
 
-  const history = recent.filter((t) => t.role === "user").slice(-3).map((t) => t.content);
+  const history = recent
+    .filter((t) => t.role === "user")
+    .slice(-3)
+    .map((t) => t.content);
   const { context, services } = await retrieveContext(question, history);
 
   const messages: GatewayMessage[] = [

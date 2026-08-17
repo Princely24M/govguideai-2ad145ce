@@ -100,7 +100,10 @@ function Landing() {
       <section className="mesh-light relative isolate overflow-hidden pb-20 pt-10 sm:pb-28 sm:pt-16">
         <div
           className="pointer-events-none absolute -left-40 top-10 -z-10 size-[34rem] rounded-full opacity-60 blur-3xl"
-          style={{ background: "radial-gradient(circle, var(--primary-glow), transparent 68%)", animation: "drift 24s linear infinite" }}
+          style={{
+            background: "radial-gradient(circle, var(--primary-glow), transparent 68%)",
+            animation: "drift 24s linear infinite",
+          }}
           aria-hidden="true"
         />
         <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
@@ -110,8 +113,7 @@ function Landing() {
             </Reveal>
             <Reveal delay={80}>
               <h1 className="text-hero mt-6">
-                Government services,{" "}
-                <span className="text-gradient">made easier.</span>
+                Government services, <span className="text-gradient">made easier.</span>
               </h1>
             </Reveal>
             <Reveal delay={160}>
@@ -127,7 +129,10 @@ function Landing() {
                   className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lifted transition-all duration-300 hover:shadow-glow hover:brightness-110 active:scale-[0.98]"
                 >
                   Ask GovGuide
-                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                  <ArrowRight
+                    className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </Link>
                 <Link
                   to="/services"
@@ -170,7 +175,10 @@ function Landing() {
                 height={1200}
                 className="h-[22rem] w-full rounded-3xl object-cover sm:h-[26rem]"
               />
-              <div className="glass absolute bottom-6 left-6 right-6 rounded-2xl p-4" style={{ animation: "float 9s var(--ease-soft) infinite" }}>
+              <div
+                className="glass absolute bottom-6 left-6 right-6 rounded-2xl p-4"
+                style={{ animation: "float 9s var(--ease-soft) infinite" }}
+              >
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-primary">
                   Example question
                 </p>
@@ -202,7 +210,9 @@ function Landing() {
                 <span className="grid size-11 place-items-center rounded-2xl bg-secondary text-primary">
                   <item.icon className="size-5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-5 font-display text-lg font-semibold tracking-tight">{item.title}</h3>
+                <h3 className="mt-5 font-display text-lg font-semibold tracking-tight">
+                  {item.title}
+                </h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
               </article>
             </Reveal>
@@ -221,10 +231,26 @@ function Landing() {
           </Reveal>
           <ol className="mt-14 grid gap-5 md:grid-cols-4">
             {[
-              { step: "01", title: "You ask", body: "In everyday language — no forms, no codes, no jargon required." },
-              { step: "02", title: "GovGuide clarifies", body: "One short follow-up when your question could mean several services." },
-              { step: "03", title: "Verified retrieval", body: "The matching service record is pulled from the structured knowledge base." },
-              { step: "04", title: "Structured answer", body: "Requirements, steps and the official source — with gaps clearly flagged." },
+              {
+                step: "01",
+                title: "You ask",
+                body: "In everyday language — no forms, no codes, no jargon required.",
+              },
+              {
+                step: "02",
+                title: "GovGuide clarifies",
+                body: "One short follow-up when your question could mean several services.",
+              },
+              {
+                step: "03",
+                title: "Verified retrieval",
+                body: "The matching service record is pulled from the structured knowledge base.",
+              },
+              {
+                step: "04",
+                title: "Structured answer",
+                body: "Requirements, steps and the official source — with gaps clearly flagged.",
+              },
             ].map((item, index) => (
               <Reveal as="li" key={item.step} delay={index * 100}>
                 <div className="glass-ink h-full rounded-3xl p-6">
@@ -234,7 +260,9 @@ function Landing() {
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-ink-foreground">
                     {item.title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink-foreground/70">{item.body}</p>
+                  <p className="mt-2.5 text-sm leading-relaxed text-ink-foreground/70">
+                    {item.body}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -256,7 +284,9 @@ function Landing() {
                   <item.icon className="size-5" aria-hidden="true" />
                 </span>
                 <div>
-                  <h3 className="font-display text-lg font-semibold tracking-tight">{item.title}</h3>
+                  <h3 className="font-display text-lg font-semibold tracking-tight">
+                    {item.title}
+                  </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                 </div>
               </article>
@@ -305,7 +335,10 @@ function Landing() {
                   </p>
                   <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
                     View details
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                    <ArrowRight
+                      className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
                   </span>
                 </Link>
               </Reveal>
@@ -321,9 +354,9 @@ function Landing() {
             <p className="text-eyebrow text-muted-foreground">06 — Trust</p>
             <h2 className="text-section mt-4">Every answer carries its source.</h2>
             <p className="text-lede mt-5">
-              Each service record stores the responsible authority, the official page and the date it
-              was last verified. GovGuide shows all three under the answer — and never creates a link
-              that does not exist.
+              Each service record stores the responsible authority, the official page and the date
+              it was last verified. GovGuide shows all three under the answer — and never creates a
+              link that does not exist.
             </p>
             <ul className="mt-7 space-y-3">
               {[
@@ -333,7 +366,10 @@ function Landing() {
                 "Never presents itself as a government department",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-foreground/85">
-                  <BadgeCheck className="mt-0.5 size-4.5 shrink-0 text-success" aria-hidden="true" />
+                  <BadgeCheck
+                    className="mt-0.5 size-4.5 shrink-0 text-success"
+                    aria-hidden="true"
+                  />
                   {item}
                 </li>
               ))}
@@ -349,13 +385,18 @@ function Landing() {
                 <p className="mt-1 text-xs text-muted-foreground">
                   Smart ID Card · last verified 2026-08-11
                 </p>
-                <p className="mt-2.5 text-xs font-semibold text-primary">View official information →</p>
+                <p className="mt-2.5 text-xs font-semibold text-primary">
+                  View official information →
+                </p>
               </div>
               <div className="mt-5 flex items-start gap-3 rounded-2xl border border-warning/30 bg-warning/10 px-4 py-3.5">
-                <Languages className="mt-0.5 size-4 shrink-0 text-accent-foreground" aria-hidden="true" />
+                <Languages
+                  className="mt-0.5 size-4 shrink-0 text-accent-foreground"
+                  aria-hidden="true"
+                />
                 <p className="text-xs leading-relaxed text-foreground/85">
-                  “I couldn’t find verified information for that request. I don’t want to give you an
-                  inaccurate answer. Please check the relevant official government source.”
+                  “I couldn’t find verified information for that request. I don’t want to give you
+                  an inaccurate answer. Please check the relevant official government source.”
                 </p>
               </div>
             </div>
@@ -371,8 +412,8 @@ function Landing() {
               Ask your question in plain language.
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-[0.98rem] leading-relaxed text-ink-foreground/75">
-              GovGuide will tell you what to bring, what happens at the office, and where the official
-              information comes from.
+              GovGuide will tell you what to bring, what happens at the office, and where the
+              official information comes from.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <Link
@@ -380,7 +421,10 @@ function Landing() {
                 className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-lifted transition-all duration-300 hover:brightness-105 active:scale-[0.98]"
               >
                 Ask GovGuide
-                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowRight
+                  className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </Link>
               <Link
                 to="/services"

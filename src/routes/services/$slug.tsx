@@ -128,10 +128,18 @@ function ServiceDetail() {
         </Reveal>
 
         <div className="mt-6 grid gap-5 lg:grid-cols-2">
-          <Reveal><List title="Who qualifies" items={service.eligibility} /></Reveal>
-          <Reveal delay={80}><List title="Documents to bring" items={service.required_documents} /></Reveal>
-          <Reveal delay={140}><List title="Application steps" items={service.application_steps} /></Reveal>
-          <Reveal delay={200}><List title="Where to apply" items={service.locations} /></Reveal>
+          <Reveal>
+            <List title="Who qualifies" items={service.eligibility} />
+          </Reveal>
+          <Reveal delay={80}>
+            <List title="Documents to bring" items={service.required_documents} />
+          </Reveal>
+          <Reveal delay={140}>
+            <List title="Application steps" items={service.application_steps} />
+          </Reveal>
+          <Reveal delay={200}>
+            <List title="Where to apply" items={service.locations} />
+          </Reveal>
         </div>
 
         {service.important_notes.length > 0 && (
@@ -152,12 +160,16 @@ function ServiceDetail() {
         {data.faqs.length > 0 && (
           <Reveal delay={140}>
             <section className="mt-5 rounded-3xl border border-border/70 bg-surface p-6 shadow-soft">
-              <h2 className="font-display text-lg font-semibold tracking-tight">Common questions</h2>
+              <h2 className="font-display text-lg font-semibold tracking-tight">
+                Common questions
+              </h2>
               <dl className="mt-4 space-y-5">
                 {data.faqs.map((faq) => (
                   <div key={faq.id}>
                     <dt className="text-sm font-semibold text-foreground">{faq.question}</dt>
-                    <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{faq.answer}</dd>
+                    <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {faq.answer}
+                    </dd>
                   </div>
                 ))}
               </dl>

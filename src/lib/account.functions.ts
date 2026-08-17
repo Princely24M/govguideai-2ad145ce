@@ -111,9 +111,7 @@ export const listConversations = createServerFn({ method: "GET" })
 
 export const searchConversations = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((data: unknown) =>
-    z.object({ q: z.string().trim().min(1).max(120) }).parse(data),
-  )
+  .inputValidator((data: unknown) => z.object({ q: z.string().trim().min(1).max(120) }).parse(data))
   .handler(async ({ data, context }) => {
     const term = `%${data.q.replace(/[%_]/g, "")}%`;
 
@@ -333,7 +331,8 @@ export const askInConversation = createServerFn({ method: "POST" })
       role: "user",
       content: data.question,
     });
-    if (userInsertError) return { error: "We couldn't save your message. Please try again." } as const;
+    if (userInsertError)
+      return { error: "We couldn't save your message. Please try again." } as const;
 
     const { askAssistant } = await import("./govguide-chat.server");
     const { AssistantError, generateTitle } = await import("./govguide-gateway.server");
@@ -416,7 +415,8 @@ export const importGuestConversation = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     const { supabase, userId } = context;
-    const firstQuestion = data.messages.find((m) => m.role === "user")?.content ?? "Saved conversation";
+    const firstQuestion =
+      data.messages.find((m) => m.role === "user")?.content ?? "Saved conversation";
     const { generateTitle } = await import("./govguide-gateway.server");
     const title = await generateTitle(firstQuestion);
 

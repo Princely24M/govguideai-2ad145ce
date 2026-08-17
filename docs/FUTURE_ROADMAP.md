@@ -3,6 +3,7 @@
 Everything below is **PLANNED**, not implemented.
 
 ## Near term
+
 - Automated tests: Vitest unit coverage for retrieval and prompt assembly, Playwright end-to-end
   coverage for auth, chat and conversation management.
 - Expand verified coverage beyond the current services (tax, home affairs certificates, municipal
@@ -13,6 +14,7 @@ Everything below is **PLANNED**, not implemented.
 - Export a conversation or a document checklist as PDF.
 
 ## Medium term
+
 - Multilingual answers: isiZulu, isiXhosa, Afrikaans, Sesotho.
 - Voice input and read-aloud answers for low-literacy and accessibility use cases.
 - Office locator with operating hours and appointment guidance, sourced from official data.
@@ -21,6 +23,7 @@ Everything below is **PLANNED**, not implemented.
   audit trail.
 
 ## Longer term
+
 - Progressive web app with offline access to checklists.
 - WhatsApp and USSD channels for low-bandwidth access.
 - Official data partnerships or APIs to replace manual verification.
@@ -28,6 +31,7 @@ Everything below is **PLANNED**, not implemented.
 - Analytics on unanswered questions to prioritise new verified content.
 
 ## Known limitations today
+
 - Coverage is limited to the currently verified services.
 - Retrieval is keyword-based and can miss unusual phrasings.
 - Verified records are maintained manually and carry a last-verified date rather than live data.

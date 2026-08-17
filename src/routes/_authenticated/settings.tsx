@@ -40,7 +40,10 @@ function SettingsPage() {
   const saveProfile = useServerFn(updateMyProfile);
   const wipeConversations = useServerFn(deleteAllConversations);
 
-  const profile = useQuery({ queryKey: ["profile"], queryFn: () => loadProfile({ data: undefined }) });
+  const profile = useQuery({
+    queryKey: ["profile"],
+    queryFn: () => loadProfile({ data: undefined }),
+  });
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
@@ -48,7 +51,8 @@ function SettingsPage() {
   }, [profile.data?.display_name]);
 
   const save = useMutation({
-    mutationFn: (input: { displayName?: string; theme?: ThemeChoice }) => saveProfile({ data: input }),
+    mutationFn: (input: { displayName?: string; theme?: ThemeChoice }) =>
+      saveProfile({ data: input }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["profile"] });
       toast.success("Settings saved");
@@ -115,7 +119,8 @@ function SettingsPage() {
             <button
               type="button"
               onClick={async () => {
-                if (!window.confirm("Delete every saved conversation? This cannot be undone.")) return;
+                if (!window.confirm("Delete every saved conversation? This cannot be undone."))
+                  return;
                 await wipeConversations({ data: undefined });
                 await queryClient.invalidateQueries({ queryKey: ["conversations"] });
                 toast.success("All conversations deleted");

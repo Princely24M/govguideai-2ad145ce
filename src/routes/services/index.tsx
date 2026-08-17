@@ -52,7 +52,9 @@ function ServiceExplorer() {
       const matchesCategory = category === "All" || service.category === category;
       const matchesTerm =
         needle.length === 0 ||
-        `${service.service_name} ${service.description} ${service.category}`.toLowerCase().includes(needle);
+        `${service.service_name} ${service.description} ${service.category}`
+          .toLowerCase()
+          .includes(needle);
       return matchesCategory && matchesTerm;
     });
   }, [category, services, term]);
@@ -64,7 +66,9 @@ function ServiceExplorer() {
       <main className="mx-auto w-full max-w-7xl px-5 pb-10 pt-10 sm:px-8 sm:pt-14">
         <Reveal>
           <p className="text-eyebrow text-muted-foreground">Service explorer</p>
-          <h1 className="text-section mt-4 max-w-2xl">Find the service, then ask GovGuide about it.</h1>
+          <h1 className="text-section mt-4 max-w-2xl">
+            Find the service, then ask GovGuide about it.
+          </h1>
           <p className="text-lede mt-5 max-w-2xl">
             Each service page lists the verified requirements, documents and steps in application
             order, together with the authority behind the information.
@@ -75,7 +79,9 @@ function ServiceExplorer() {
           <div className="mt-9 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="glass-secondary flex items-center gap-2.5 rounded-full px-4 py-2.5 lg:max-w-sm lg:flex-1">
               <Search className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-              <label htmlFor="service-search" className="sr-only">Search services</label>
+              <label htmlFor="service-search" className="sr-only">
+                Search services
+              </label>
               <input
                 id="service-search"
                 value={term}
@@ -107,10 +113,12 @@ function ServiceExplorer() {
 
         {filtered.length === 0 ? (
           <div className="glass mt-12 rounded-3xl p-10 text-center">
-            <h2 className="font-display text-lg font-semibold tracking-tight">No services match that search</h2>
+            <h2 className="font-display text-lg font-semibold tracking-tight">
+              No services match that search
+            </h2>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-              This prototype covers {services.length} services. Try a different word, or ask GovGuide
-              directly — it will tell you if a service is outside its knowledge base.
+              This prototype covers {services.length} services. Try a different word, or ask
+              GovGuide directly — it will tell you if a service is outside its knowledge base.
             </p>
             <Link
               to="/chat"
@@ -134,11 +142,17 @@ function ServiceExplorer() {
                     </span>
                   </div>
                   <h2 className="mt-5 font-display text-lg font-semibold tracking-tight">
-                    <Link to="/services/$slug" params={{ slug: service.slug }} className="hover:underline">
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: service.slug }}
+                      className="hover:underline"
+                    >
                       {service.service_name}
                     </Link>
                   </h2>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {service.description}
+                  </p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     <Link
                       to="/chat"

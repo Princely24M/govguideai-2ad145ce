@@ -35,40 +35,49 @@ grants, and anyone helping a family member navigate a government process.
 ## Features (IMPLEMENTED)
 
 ### Landing page
+
 Branded hero with the official GovGuide logo, the public-service problem, how the assistant works,
 AI capabilities, trust and responsible-AI messaging, accessibility notes, featured services and a
 call to action into **Ask GovGuide**.
 
 ### Guest chat — `/chat`
+
 No account required. Suggested starter questions, conversational context, thinking state, error
 handling, copy answer, thumbs up/down feedback, and a "Save this conversation" path that carries the
 transcript into a new account on sign-up.
 
 ### Service explorer — `/services`, `/services/$slug`
+
 Browsable, searchable directory of the verified services with category filters. Each detail page
 lists documents, steps, fees, processing time, the responsible authority, the official URL and the
 last-verified date.
 
 ### Authentication — `/auth`, `/reset-password`
+
 Email + password sign-up, sign-in, sign-out, password reset, and persistent sessions. The
 `/_authenticated/*` route subtree is gated and redirects unauthenticated visitors to `/auth`.
 
 ### Conversation management — `/dashboard`, `/c/$conversationId`, `/archived`
+
 Create conversations, send messages, receive AI answers with sources, auto-generated titles,
 sidebar history, search across conversations, rename, archive, restore and delete.
 
 ### Profile and settings — `/settings`
+
 Edit display name; appearance switch for Light / Dark / System (System follows the OS/browser
 preference); danger zone to delete all conversations behind an explicit confirmation; sign out.
 
 ### Usage — `/usage`
+
 AI response count plus input, output and total tokens, aggregated from the token metadata the AI
 provider returns on each response. No values are estimated or fabricated.
 
 ### About — `/about`
+
 Accuracy rules, source-tracing methodology and accessibility commitments.
 
 ## Planned / future
+
 See [docs/FUTURE_ROADMAP.md](docs/FUTURE_ROADMAP.md) — multilingual answers (isiZulu, isiXhosa,
 Afrikaans, Sesotho), voice input, document checklists as downloadable PDFs, office locator, semantic
 (vector) retrieval, and an admin console for maintaining verified content.
@@ -109,18 +118,18 @@ tablet and mobile. See [docs/UI_UX_DESIGN.md](docs/UI_UX_DESIGN.md).
 
 ## Technology stack
 
-| Layer | Technology |
-| --- | --- |
-| Framework | TanStack Start v1 (React 19, SSR, file-based routing) |
-| Build | Vite |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 + OKLCH design tokens |
-| UI primitives | Radix UI / shadcn-style components, lucide-react, sonner |
-| Data fetching | TanStack Query + route loaders |
-| Backend logic | TanStack `createServerFn` server functions |
-| Database & auth | Supabase (PostgreSQL, Auth, Row Level Security) |
-| AI | Lovable AI Gateway (Gemini-class model) |
-| Hosting | Lovable (edge/worker runtime) |
+| Layer           | Technology                                               |
+| --------------- | -------------------------------------------------------- |
+| Framework       | TanStack Start v1 (React 19, SSR, file-based routing)    |
+| Build           | Vite                                                     |
+| Language        | TypeScript                                               |
+| Styling         | Tailwind CSS v4 + OKLCH design tokens                    |
+| UI primitives   | Radix UI / shadcn-style components, lucide-react, sonner |
+| Data fetching   | TanStack Query + route loaders                           |
+| Backend logic   | TanStack `createServerFn` server functions               |
+| Database & auth | Supabase (PostgreSQL, Auth, Row Level Security)          |
+| AI              | Lovable AI Gateway (Gemini-class model)                  |
+| Hosting         | Lovable (edge/worker runtime)                            |
 
 ## Architecture
 
@@ -213,12 +222,12 @@ Place captures in [`screenshots/`](screenshots) (`landing-page.png`, `guest-chat
 
 Roles are leads, not exclusive ownership — every feature was a collaboration.
 
-| Member | Role | Responsibilities |
-| --- | --- | --- |
-| **Thenjiwe** | Product & AI/UX Lead | Product direction, AI behaviour, prompt engineering, UX architecture, documentation |
-| **Chichi** | Frontend & UI Developer | React, responsive UI, landing page, chat interface, design system |
-| **Princely** | Backend & Data Developer | Supabase, authentication, database, RLS, backend logic, data security |
-| **Sinawo** | AI Integration & QA Lead | AI API integration, response handling, usage tracking, testing, error handling, QA |
+| Member       | Role                     | Responsibilities                                                                    |
+| ------------ | ------------------------ | ----------------------------------------------------------------------------------- |
+| **Thenjiwe** | Product & AI/UX Lead     | Product direction, AI behaviour, prompt engineering, UX architecture, documentation |
+| **Chichi**   | Frontend & UI Developer  | React, responsive UI, landing page, chat interface, design system                   |
+| **Princely** | Backend & Data Developer | Supabase, authentication, database, RLS, backend logic, data security               |
+| **Sinawo**   | AI Integration & QA Lead | AI API integration, response handling, usage tracking, testing, error handling, QA  |
 
 ## Project purpose
 

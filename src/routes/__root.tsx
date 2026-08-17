@@ -89,7 +89,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "GovGuide — AI help with SA government services" },
       {
         property: "og:description",
-        content: "Verified answers on South African public services, with the official source each time.",
+        content:
+          "Verified answers on South African public services, with the official source each time.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -19,8 +19,9 @@ export function SiteFooter() {
             <BrandLogo size="md" />
           </Link>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            An AI-powered public-service information assistant that explains South African government
-            procedures in plain language, with a link to the official source behind every answer.
+            An AI-powered public-service information assistant that explains South African
+            government procedures in plain language, with a link to the official source behind every
+            answer.
           </p>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
             GovGuide is an educational prototype built for an AI Bootcamp. It is not an official
@@ -37,7 +38,10 @@ export function SiteFooter() {
               { to: "/about", label: "About & responsible AI" },
             ].map((item) => (
               <li key={item.to}>
-                <Link to={item.to} className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link
+                  to={item.to}
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
                   {item.label}
                 </Link>
               </li>
@@ -64,8 +68,8 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border/70 px-5 py-6 text-center text-xs text-muted-foreground sm:px-8">
-        Always confirm fees, documents and deadlines with the relevant government authority before you
-        travel to an office.
+        Always confirm fees, documents and deadlines with the relevant government authority before
+        you travel to an office.
       </div>
     </footer>
   );

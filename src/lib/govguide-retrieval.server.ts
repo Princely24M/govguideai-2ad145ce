@@ -27,21 +27,82 @@ type RetrievedFaq = { service_id: string | null; question: string; answer: strin
  * flow keeps working unchanged (an `embedding vector(1536)` column already exists).
  */
 const SYNONYMS: Record<string, string[]> = {
-  "smart-id": ["id", "identity", "smart id", "id card", "id book", "identity document", "green book", "16"],
+  "smart-id": [
+    "id",
+    "identity",
+    "smart id",
+    "id card",
+    "id book",
+    "identity document",
+    "green book",
+    "16",
+  ],
   passport: ["passport", "travel document", "travel", "overseas", "abroad", "visa page"],
   "learners-licence": ["learner", "learners", "learner's", "k53", "written test", "learners test"],
-  "drivers-licence": ["driver", "drivers", "driver's", "driving", "driving licence", "driving license", "practical test", "renew licence card"],
-  "vehicle-licence": ["vehicle", "car licence", "licence disc", "disc", "registration", "roadworthy", "mvl2", "number plate"],
-  "social-grants": ["grant", "grants", "sassa", "social grant", "child support", "old age", "pension", "disability", "srd", "foster"],
-  uif: ["uif", "unemployment", "retrenched", "retrenchment", "maternity", "ufiling", "ui-19", "labour", "dismissed"],
-  "business-registration": ["business", "company", "cipc", "register a company", "pty", "startup", "sole proprietor", "trading name"],
+  "drivers-licence": [
+    "driver",
+    "drivers",
+    "driver's",
+    "driving",
+    "driving licence",
+    "driving license",
+    "practical test",
+    "renew licence card",
+  ],
+  "vehicle-licence": [
+    "vehicle",
+    "car licence",
+    "licence disc",
+    "disc",
+    "registration",
+    "roadworthy",
+    "mvl2",
+    "number plate",
+  ],
+  "social-grants": [
+    "grant",
+    "grants",
+    "sassa",
+    "social grant",
+    "child support",
+    "old age",
+    "pension",
+    "disability",
+    "srd",
+    "foster",
+  ],
+  uif: [
+    "uif",
+    "unemployment",
+    "retrenched",
+    "retrenchment",
+    "maternity",
+    "ufiling",
+    "ui-19",
+    "labour",
+    "dismissed",
+  ],
+  "business-registration": [
+    "business",
+    "company",
+    "cipc",
+    "register a company",
+    "pty",
+    "startup",
+    "sole proprietor",
+    "trading name",
+  ],
 };
 
 function scoreService(service: RetrievedService, text: string) {
   let score = 0;
-  const haystack = `${service.service_name} ${service.category} ${service.description}`.toLowerCase();
+  const haystack =
+    `${service.service_name} ${service.category} ${service.description}`.toLowerCase();
 
-  for (const word of service.service_name.toLowerCase().split(/[^a-z]+/).filter((w) => w.length > 3)) {
+  for (const word of service.service_name
+    .toLowerCase()
+    .split(/[^a-z]+/)
+    .filter((w) => w.length > 3)) {
     if (text.includes(word)) score += 4;
   }
   for (const term of SYNONYMS[service.slug] ?? []) {
@@ -109,7 +170,10 @@ export async function retrieveContext(question: string, history: string[]) {
         block("Where to apply", service.locations),
         block("Important notes", service.important_notes),
         serviceFaqs.length
-          ? block("Verified FAQs", serviceFaqs.map((f) => `Q: ${f.question} A: ${f.answer}`))
+          ? block(
+              "Verified FAQs",
+              serviceFaqs.map((f) => `Q: ${f.question} A: ${f.answer}`),
+            )
           : "",
         `\nSource authority: ${service.source_authority}`,
         `Source URL: ${service.source_url}`,
