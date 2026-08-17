@@ -24,6 +24,7 @@ export type AssistantAnswer = {
 
 /** Sanitise user text: cap length and strip control characters before it reaches the model. */
 function clean(text: string) {
+  // eslint-disable-next-line no-control-regex -- deliberately stripping control characters
   return text.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, " ").slice(0, 2000);
 }
 
