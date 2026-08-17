@@ -168,21 +168,17 @@ Scripts defined in `package.json`: `dev`, `build`, `build:dev`, `preview`, `lint
 
 ## Environment variables
 
-Client-safe (publishable) values, required to run locally:
+Copy [`.env.example`](.env.example) to `.env` and fill in your own values. `.env` is git-ignored and
+must never be committed — real credentials stay local or in the hosting environment.
 
 ```sh
-VITE_SUPABASE_URL=https://<project>.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
-VITE_SUPABASE_PROJECT_ID=<project-ref>
-SUPABASE_URL=https://<project>.supabase.co
-SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+cp .env.example .env
 ```
 
-Server-side secrets (never committed, set in the hosting environment):
-
-```sh
-LOVABLE_API_KEY=        # AI Gateway access
-```
+`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID`,
+`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` are client-safe publishable values (safe only because
+Row Level Security is enforced). `LOVABLE_API_KEY` is a server-side secret for the AI Gateway and is
+set in the hosting environment only.
 
 ## Deployment
 
